@@ -8,6 +8,13 @@ st.title("Customer Journey Insights Dashboard")
 # Load data
 df = pd.read_csv("data.csv")
 
+# Filter by stage
+st.sidebar.header("Filter")
+selected_stage = st.sidebar.selectbox("Select Stage", options=["All"] + list(df['stage'].unique()))
+
+if selected_stage != "All":
+    df = df[df['stage'] == selected_stage]
+
 # Show raw data
 with st.expander("Show Raw Data"):
     st.dataframe(df)
