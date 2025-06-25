@@ -1,0 +1,9 @@
+customer_id,stage,timestamp,satisfaction_score
+1,Signup,2025-01-01,8
+1,Onboarding,2025-01-02,7
+1,Usage,2025-01-05,9
+2,Signup,2025-01-01,6
+2,Onboarding,2025-01-03,4
+3,Signup,2025-01-02,9
+3,Onboarding,2025-01-03,7
+3,Usage,2025-01-07,8
