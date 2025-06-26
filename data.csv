@@ -1,9 +1,270 @@
-customer_id,stage,timestamp,satisfaction_score
-1,Signup,2025-01-01,8
-1,Onboarding,2025-01-02,7
-1,Usage,2025-01-05,9
-2,Signup,2025-01-01,6
-2,Onboarding,2025-01-03,4
-3,Signup,2025-01-02,9
-3,Onboarding,2025-01-03,7
-3,Usage,2025-01-07,8
+customer_id,stage,timestamp,satisfaction_score,segment,region
+1,Signup,2025-06-04,5,Premium,Western Cape
+1,Onboarding,2025-06-09,10,Premium,Western Cape
+2,Signup,2025-06-04,6,Free,KZN
+2,Onboarding,2025-06-08,6,Free,KZN
+3,Signup,2025-06-01,10,Free,Eastern Cape
+3,Onboarding,2025-06-02,8,Free,Eastern Cape
+3,Usage,2025-06-03,7,Free,Eastern Cape
+4,Signup,2025-06-01,4,Premium,Western Cape
+4,Onboarding,2025-06-03,8,Premium,Western Cape
+4,Usage,2025-06-05,9,Premium,Western Cape
+5,Signup,2025-06-01,10,Premium,KZN
+5,Onboarding,2025-06-02,5,Premium,KZN
+5,Usage,2025-06-11,4,Premium,KZN
+6,Signup,2025-06-04,4,Premium,KZN
+6,Onboarding,2025-06-09,7,Premium,KZN
+6,Usage,2025-06-14,6,Premium,KZN
+7,Signup,2025-06-02,6,Free,Eastern Cape
+7,Onboarding,2025-06-06,5,Free,Eastern Cape
+8,Signup,2025-06-06,6,Free,Eastern Cape
+8,Onboarding,2025-06-11,9,Free,Eastern Cape
+8,Usage,2025-06-08,9,Free,Eastern Cape
+9,Signup,2025-06-03,6,Premium,Western Cape
+9,Onboarding,2025-06-07,6,Premium,Western Cape
+9,Usage,2025-06-09,7,Premium,Western Cape
+10,Signup,2025-06-01,10,Free,Eastern Cape
+10,Onboarding,2025-06-04,5,Free,Eastern Cape
+11,Signup,2025-06-01,4,Free,Eastern Cape
+11,Onboarding,2025-06-02,6,Free,Eastern Cape
+11,Usage,2025-06-11,7,Free,Eastern Cape
+12,Signup,2025-06-03,10,Free,KZN
+12,Onboarding,2025-06-05,6,Free,KZN
+12,Usage,2025-06-07,8,Free,KZN
+13,Signup,2025-06-03,4,Premium,Western Cape
+13,Onboarding,2025-06-04,7,Premium,Western Cape
+13,Usage,2025-06-13,4,Premium,Western Cape
+14,Signup,2025-06-02,5,Free,Eastern Cape
+14,Onboarding,2025-06-07,9,Free,Eastern Cape
+14,Usage,2025-06-12,7,Free,Eastern Cape
+15,Signup,2025-06-02,8,Free,KZN
+15,Onboarding,2025-06-04,4,Free,KZN
+15,Usage,2025-06-06,6,Free,KZN
+16,Signup,2025-06-05,10,Free,Gauteng
+16,Onboarding,2025-06-10,6,Free,Gauteng
+16,Usage,2025-06-09,4,Free,Gauteng
+17,Signup,2025-06-06,10,Premium,Western Cape
+17,Onboarding,2025-06-07,5,Premium,Western Cape
+17,Usage,2025-06-08,10,Premium,Western Cape
+18,Signup,2025-06-06,9,Premium,Eastern Cape
+18,Onboarding,2025-06-07,6,Premium,Eastern Cape
+18,Usage,2025-06-12,5,Premium,Eastern Cape
+19,Signup,2025-06-04,4,Premium,Eastern Cape
+19,Onboarding,2025-06-09,6,Premium,Eastern Cape
+19,Usage,2025-06-08,4,Premium,Eastern Cape
+20,Signup,2025-06-06,10,Free,KZN
+20,Onboarding,2025-06-08,6,Free,KZN
+20,Usage,2025-06-08,7,Free,KZN
+21,Signup,2025-06-05,4,Free,Western Cape
+21,Onboarding,2025-06-08,9,Free,Western Cape
+21,Usage,2025-06-15,7,Free,Western Cape
+22,Signup,2025-06-06,10,Free,Western Cape
+22,Onboarding,2025-06-10,4,Free,Western Cape
+22,Usage,2025-06-08,5,Free,Western Cape
+23,Signup,2025-06-01,10,Free,KZN
+23,Onboarding,2025-06-06,9,Free,KZN
+24,Signup,2025-06-03,9,Free,Gauteng
+24,Onboarding,2025-06-06,8,Free,Gauteng
+25,Signup,2025-06-05,6,Premium,Western Cape
+25,Onboarding,2025-06-09,6,Premium,Western Cape
+25,Usage,2025-06-07,8,Premium,Western Cape
+26,Signup,2025-06-06,9,Free,KZN
+26,Onboarding,2025-06-08,8,Free,KZN
+27,Signup,2025-06-03,8,Premium,Gauteng
+27,Onboarding,2025-06-06,9,Premium,Gauteng
+27,Usage,2025-06-13,5,Premium,Gauteng
+28,Signup,2025-06-03,6,Free,KZN
+28,Onboarding,2025-06-04,9,Free,KZN
+29,Signup,2025-06-05,4,Premium,Western Cape
+29,Onboarding,2025-06-10,10,Premium,Western Cape
+29,Usage,2025-06-11,4,Premium,Western Cape
+30,Signup,2025-06-05,10,Premium,Western Cape
+30,Onboarding,2025-06-07,9,Premium,Western Cape
+30,Usage,2025-06-07,4,Premium,Western Cape
+31,Signup,2025-06-02,10,Free,Eastern Cape
+31,Onboarding,2025-06-04,7,Free,Eastern Cape
+31,Usage,2025-06-12,9,Free,Eastern Cape
+32,Signup,2025-06-06,7,Free,KZN
+32,Onboarding,2025-06-08,7,Free,KZN
+32,Usage,2025-06-10,4,Free,KZN
+33,Signup,2025-06-04,6,Premium,Western Cape
+33,Onboarding,2025-06-05,7,Premium,Western Cape
+33,Usage,2025-06-08,8,Premium,Western Cape
+34,Signup,2025-06-06,10,Premium,KZN
+34,Onboarding,2025-06-10,8,Premium,KZN
+34,Usage,2025-06-14,8,Premium,KZN
+35,Signup,2025-06-03,5,Free,Eastern Cape
+35,Onboarding,2025-06-04,7,Free,Eastern Cape
+35,Usage,2025-06-09,9,Free,Eastern Cape
+36,Signup,2025-06-01,8,Premium,Gauteng
+36,Onboarding,2025-06-03,5,Premium,Gauteng
+36,Usage,2025-06-11,9,Premium,Gauteng
+37,Signup,2025-06-05,8,Premium,KZN
+37,Onboarding,2025-06-09,4,Premium,KZN
+37,Usage,2025-06-11,10,Premium,KZN
+38,Signup,2025-06-06,7,Premium,Eastern Cape
+38,Onboarding,2025-06-09,5,Premium,Eastern Cape
+38,Usage,2025-06-16,7,Premium,Eastern Cape
+39,Signup,2025-06-04,4,Free,KZN
+39,Onboarding,2025-06-06,5,Free,KZN
+39,Usage,2025-06-08,5,Free,KZN
+40,Signup,2025-06-06,7,Free,Western Cape
+40,Onboarding,2025-06-10,6,Free,Western Cape
+40,Usage,2025-06-08,4,Free,Western Cape
+41,Signup,2025-06-02,7,Premium,KZN
+41,Onboarding,2025-06-05,5,Premium,KZN
+41,Usage,2025-06-08,5,Premium,KZN
+42,Signup,2025-06-03,7,Premium,Gauteng
+42,Onboarding,2025-06-05,6,Premium,Gauteng
+42,Usage,2025-06-07,10,Premium,Gauteng
+43,Signup,2025-06-03,10,Free,Eastern Cape
+43,Onboarding,2025-06-08,7,Free,Eastern Cape
+43,Usage,2025-06-09,10,Free,Eastern Cape
+44,Signup,2025-06-05,4,Free,Gauteng
+44,Onboarding,2025-06-10,9,Free,Gauteng
+45,Signup,2025-06-06,6,Premium,Eastern Cape
+45,Onboarding,2025-06-07,7,Premium,Eastern Cape
+45,Usage,2025-06-14,7,Premium,Eastern Cape
+46,Signup,2025-06-01,8,Premium,Gauteng
+46,Onboarding,2025-06-04,8,Premium,Gauteng
+46,Usage,2025-06-11,9,Premium,Gauteng
+47,Signup,2025-06-06,8,Free,Gauteng
+47,Onboarding,2025-06-10,4,Free,Gauteng
+47,Usage,2025-06-14,7,Free,Gauteng
+48,Signup,2025-06-06,9,Premium,KZN
+48,Onboarding,2025-06-08,9,Premium,KZN
+48,Usage,2025-06-14,6,Premium,KZN
+49,Signup,2025-06-01,5,Premium,KZN
+49,Onboarding,2025-06-06,10,Premium,KZN
+49,Usage,2025-06-05,8,Premium,KZN
+50,Signup,2025-06-01,4,Premium,Eastern Cape
+50,Onboarding,2025-06-02,7,Premium,Eastern Cape
+51,Signup,2025-06-06,4,Free,Eastern Cape
+51,Onboarding,2025-06-11,10,Free,Eastern Cape
+51,Usage,2025-06-14,7,Free,Eastern Cape
+52,Signup,2025-06-02,5,Premium,Gauteng
+52,Onboarding,2025-06-03,7,Premium,Gauteng
+52,Usage,2025-06-06,7,Premium,Gauteng
+53,Signup,2025-06-06,9,Premium,KZN
+53,Onboarding,2025-06-08,7,Premium,KZN
+53,Usage,2025-06-14,7,Premium,KZN
+54,Signup,2025-06-02,7,Free,Western Cape
+54,Onboarding,2025-06-04,6,Free,Western Cape
+54,Usage,2025-06-06,4,Free,Western Cape
+55,Signup,2025-06-03,8,Premium,Gauteng
+55,Onboarding,2025-06-07,8,Premium,Gauteng
+56,Signup,2025-06-02,6,Premium,Western Cape
+56,Onboarding,2025-06-07,10,Premium,Western Cape
+57,Signup,2025-06-01,8,Premium,Eastern Cape
+57,Onboarding,2025-06-06,7,Premium,Eastern Cape
+58,Signup,2025-06-01,4,Premium,Eastern Cape
+58,Onboarding,2025-06-04,8,Premium,Eastern Cape
+58,Usage,2025-06-09,8,Premium,Eastern Cape
+59,Signup,2025-06-02,10,Premium,Western Cape
+59,Onboarding,2025-06-03,10,Premium,Western Cape
+59,Usage,2025-06-10,8,Premium,Western Cape
+60,Signup,2025-06-05,9,Premium,Western Cape
+60,Onboarding,2025-06-07,4,Premium,Western Cape
+61,Signup,2025-06-04,10,Premium,Eastern Cape
+61,Onboarding,2025-06-08,7,Premium,Eastern Cape
+62,Signup,2025-06-01,7,Free,Gauteng
+62,Onboarding,2025-06-03,7,Free,Gauteng
+62,Usage,2025-06-03,8,Free,Gauteng
+63,Signup,2025-06-03,5,Premium,KZN
+63,Onboarding,2025-06-07,9,Premium,KZN
+64,Signup,2025-06-03,7,Free,KZN
+64,Onboarding,2025-06-06,8,Free,KZN
+64,Usage,2025-06-11,10,Free,KZN
+65,Signup,2025-06-03,9,Free,Western Cape
+65,Onboarding,2025-06-06,7,Free,Western Cape
+66,Signup,2025-06-01,9,Premium,KZN
+66,Onboarding,2025-06-06,4,Premium,KZN
+67,Signup,2025-06-04,5,Free,KZN
+67,Onboarding,2025-06-08,7,Free,KZN
+68,Signup,2025-06-03,4,Premium,Western Cape
+68,Onboarding,2025-06-08,5,Premium,Western Cape
+68,Usage,2025-06-09,9,Premium,Western Cape
+69,Signup,2025-06-01,4,Premium,Eastern Cape
+69,Onboarding,2025-06-04,10,Premium,Eastern Cape
+69,Usage,2025-06-11,4,Premium,Eastern Cape
+70,Signup,2025-06-02,4,Free,KZN
+70,Onboarding,2025-06-06,10,Free,KZN
+70,Usage,2025-06-12,6,Free,KZN
+71,Signup,2025-06-01,7,Premium,KZN
+71,Onboarding,2025-06-05,6,Premium,KZN
+72,Signup,2025-06-02,8,Premium,Eastern Cape
+72,Onboarding,2025-06-05,9,Premium,Eastern Cape
+72,Usage,2025-06-04,9,Premium,Eastern Cape
+73,Signup,2025-06-03,7,Premium,Gauteng
+73,Onboarding,2025-06-04,5,Premium,Gauteng
+74,Signup,2025-06-02,10,Free,Western Cape
+74,Onboarding,2025-06-04,6,Free,Western Cape
+75,Signup,2025-06-01,8,Premium,Eastern Cape
+75,Onboarding,2025-06-02,5,Premium,Eastern Cape
+75,Usage,2025-06-11,7,Premium,Eastern Cape
+76,Signup,2025-06-02,6,Free,Western Cape
+76,Onboarding,2025-06-04,10,Free,Western Cape
+76,Usage,2025-06-10,7,Free,Western Cape
+77,Signup,2025-06-03,9,Premium,Western Cape
+77,Onboarding,2025-06-07,7,Premium,Western Cape
+77,Usage,2025-06-11,9,Premium,Western Cape
+78,Signup,2025-06-05,5,Free,KZN
+78,Onboarding,2025-06-09,6,Free,KZN
+79,Signup,2025-06-05,4,Premium,Western Cape
+79,Onboarding,2025-06-06,8,Premium,Western Cape
+80,Signup,2025-06-01,8,Free,KZN
+80,Onboarding,2025-06-02,5,Free,KZN
+81,Signup,2025-06-03,6,Premium,KZN
+81,Onboarding,2025-06-08,4,Premium,KZN
+81,Usage,2025-06-09,9,Premium,KZN
+82,Signup,2025-06-05,8,Premium,Gauteng
+82,Onboarding,2025-06-06,5,Premium,Gauteng
+82,Usage,2025-06-07,4,Premium,Gauteng
+83,Signup,2025-06-02,9,Free,Gauteng
+83,Onboarding,2025-06-04,6,Free,Gauteng
+83,Usage,2025-06-08,7,Free,Gauteng
+84,Signup,2025-06-05,8,Free,Eastern Cape
+84,Onboarding,2025-06-06,4,Free,Eastern Cape
+84,Usage,2025-06-09,4,Free,Eastern Cape
+85,Signup,2025-06-05,6,Free,Gauteng
+85,Onboarding,2025-06-07,4,Free,Gauteng
+85,Usage,2025-06-07,5,Free,Gauteng
+86,Signup,2025-06-04,4,Free,KZN
+86,Onboarding,2025-06-05,10,Free,KZN
+86,Usage,2025-06-08,4,Free,KZN
+87,Signup,2025-06-05,5,Premium,Eastern Cape
+87,Onboarding,2025-06-08,9,Premium,Eastern Cape
+88,Signup,2025-06-05,7,Free,Eastern Cape
+88,Onboarding,2025-06-07,8,Free,Eastern Cape
+88,Usage,2025-06-11,5,Free,Eastern Cape
+89,Signup,2025-06-06,5,Free,Eastern Cape
+89,Onboarding,2025-06-11,5,Free,Eastern Cape
+90,Signup,2025-06-06,5,Free,KZN
+90,Onboarding,2025-06-08,8,Free,KZN
+90,Usage,2025-06-08,10,Free,KZN
+91,Signup,2025-06-02,10,Premium,Gauteng
+91,Onboarding,2025-06-05,5,Premium,Gauteng
+91,Usage,2025-06-12,9,Premium,Gauteng
+92,Signup,2025-06-01,8,Free,Gauteng
+92,Onboarding,2025-06-04,4,Free,Gauteng
+92,Usage,2025-06-09,10,Free,Gauteng
+93,Signup,2025-06-03,8,Premium,Western Cape
+93,Onboarding,2025-06-05,8,Premium,Western Cape
+93,Usage,2025-06-11,5,Premium,Western Cape
+94,Signup,2025-06-04,4,Free,KZN
+94,Onboarding,2025-06-09,5,Free,KZN
+95,Signup,2025-06-01,10,Premium,Eastern Cape
+95,Onboarding,2025-06-04,8,Premium,Eastern Cape
+96,Signup,2025-06-06,10,Free,Gauteng
+96,Onboarding,2025-06-10,9,Free,Gauteng
+97,Signup,2025-06-01,8,Free,KZN
+97,Onboarding,2025-06-05,8,Free,KZN
+98,Signup,2025-06-04,8,Free,KZN
+98,Onboarding,2025-06-09,8,Free,KZN
+98,Usage,2025-06-14,6,Free,KZN
+99,Signup,2025-06-01,5,Free,Gauteng
+99,Onboarding,2025-06-04,4,Free,Gauteng
+99,Usage,2025-06-05,9,Free,Gauteng
+100,Signup,2025-06-01,5,Free,Western Cape
+100,Onboarding,2025-06-03,9,Free,Western Cape
+100,Usage,2025-06-03,7,Free,Western Cape

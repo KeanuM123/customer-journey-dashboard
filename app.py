@@ -1,107 +1,171 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from PIL import Image
+from datetime import datetime
+import requests
+from streamlit_lottie import st_lottie
 
-# App config
-st.set_page_config(page_title="Customer Journey Dashboard", layout="wide")
+# Load Lottie animation from URL
+def load_lottie_url(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
-# --- Theme colors
-color_sequence = ['#004D7A', '#34699A', '#7CA3C2']
+# Show logo smaller in sidebar
+def show_sidebar_logo():
+    try:
+        logo = Image.open("bsg_logo.png")
+        st.sidebar.image(logo, width=120)
+    except:
+        st.sidebar.write("**BSG Logo Here**")
 
-# --- Sidebar ---
-st.sidebar.markdown("## 🏢 BSG Demo Dashboard")
-st.sidebar.markdown("### 🔽 Navigation")
-st.sidebar.markdown("- Filter Data\n- Overview\n- Drop-off\n- Satisfaction\n- Timeline & Funnel\n- Export")
+# Show logo on login page (larger)
+def show_login_logo():
+    try:
+        logo = Image.open("bsg_logo.png")
+        st.image(logo, width=250)
+    except:
+        st.write("**BSG Logo Here**")
 
-# --- Title ---
-st.title("📊 Customer Journey Insights Dashboard")
+# Login function (no experimental_rerun)
+def login():
+    correct_username = "Keanu"
+    correct_password = "Keanumoodley1"
 
-# --- How to Use ---
-with st.expander("🧭 How to Use This Dashboard"):
-    st.markdown("""
-    - Use the sidebar to filter by customer journey stage.
-    - Explore drop-off trends, satisfaction metrics, and journey progression.
-    - View funnel stages and download filtered data.
-    """)
+    if "logged_in" not in st.session_state:
+        st.session_state.logged_in = False
 
-# --- Load Data ---
-df = pd.read_csv("data.csv")
+    if not st.session_state.logged_in:
+        st.markdown("""
+            <style>
+                .login-title {
+                    text-align: center;
+                    font-size: 2.2rem;
+                    color: #3a3a3a;
+                    margin-bottom: 10px;
+                }
+                .login-subtitle {
+                    text-align: center;
+                    font-size: 1rem;
+                    color: #666;
+                    margin-bottom: 20px;
+                }
+            </style>
+            <div class='login-title'>🔐 Welcome to Keanu's Dashboard</div>
+            <div class='login-subtitle'>Please log in to access customer insights</div>
+        """, unsafe_allow_html=True)
 
-# --- Filter ---
-st.sidebar.header("🔍 Filter")
-selected_stage = st.sidebar.selectbox("Select Stage", options=["All"] + list(df['stage'].unique()))
-if selected_stage != "All":
-    df = df[df['stage'] == selected_stage]
+        show_login_logo()
+        login_animation = load_lottie_url("https://assets2.lottiefiles.com/packages/lf20_qp1q7mct.json")
+        if login_animation:
+            st_lottie(login_animation, height=250)
 
-# --- Raw Data ---
-with st.expander("📂 Show Raw Data"):
-    st.dataframe(df)
+        username = st.text_input("Username")
+        password = st.text_input("Password", type="password")
 
-# --- Metrics ---
-st.markdown("## 📌 Key Metrics")
-total_customers = df['customer_id'].nunique()
-completed = df[df['stage'] == 'Usage']['customer_id'].nunique()
-completion_rate = round((completed / total_customers) * 100, 2) if total_customers else 0
-avg_satisfaction = round(df['satisfaction_score'].mean(), 2)
+        if st.button("Login"):
+            if username == correct_username and password == correct_password:
+                st.session_state.logged_in = True
+                st.success("Login successful 🎉")
+            else:
+                st.error("Incorrect username or password")
+        return False
+    else:
+        return True
 
-col1, col2, col3 = st.columns(3)
-col1.metric("👥 Total Customers", total_customers)
-col2.metric("✅ Completion Rate", f"{completion_rate}%")
-col3.metric("⭐ Avg Satisfaction", avg_satisfaction)
+# Main app code
+def main():
+    st.set_page_config(
+        page_title="BSG Customer Journey Dashboard",
+        page_icon="📊",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
 
-# --- Insights ---
-st.markdown("## 💡 Quick Insights")
-if completion_rate < 60:
-    st.error("🚨 High drop-off rate! Consider improving onboarding or sending follow-ups.")
-if avg_satisfaction < 6:
-    st.warning("⚠️ Customer satisfaction is low. Investigate user experience issues.")
-else:
-    st.success("✅ Overall journey and satisfaction appear healthy.")
+    if login():
+        show_sidebar_logo()
 
-# --- Drop-off Analysis ---
-st.markdown("## 📉 Drop-off Analysis")
-journey_counts = df.groupby('customer_id')['stage'].nunique().value_counts().sort_index()
-st.bar_chart(journey_counts)
+        df = pd.read_csv("data.csv", parse_dates=["timestamp"])
+        segments = df['segment'].unique()
+        regions = df['region'].unique()
 
-# --- Satisfaction Scores ---
-st.markdown("## 😊 Satisfaction Scores by Stage")
-avg_scores = df.groupby('stage')['satisfaction_score'].mean().reset_index()
-fig = px.bar(avg_scores, x='stage', y='satisfaction_score', color='satisfaction_score',
-             title="Average Satisfaction per Stage",
-             color_continuous_scale='blues')
-st.plotly_chart(fig, use_container_width=True)
+        st.sidebar.title("🔍 Filters")
+        selected_segment = st.sidebar.selectbox("Select Segment", ["All"] + list(segments))
+        selected_region = st.sidebar.selectbox("Select Region", ["All"] + list(regions))
 
-# --- Timeline & Funnel Side-by-Side ---
-st.markdown("## ⏱️ Timeline & Funnel")
-colA, colB = st.columns(2)
+        df_filtered = df.copy()
+        if selected_segment != "All":
+            df_filtered = df_filtered[df_filtered['segment'] == selected_segment]
+        if selected_region != "All":
+            df_filtered = df_filtered[df_filtered['region'] == selected_region]
 
-with colA:
-    st.subheader("📈 Customer Progress Timeline")
-    timeline_data = df.sort_values(['customer_id', 'timestamp'])
-    fig2 = px.line(timeline_data, x='timestamp', y='stage', color='customer_id',
-                   markers=True, title="Customer Progression Over Time",
-                   color_discrete_sequence=color_sequence)
-    st.plotly_chart(fig2, use_container_width=True)
+        st.markdown("""
+            <style>
+                .main-title {
+                    font-size: 2.5rem;
+                    font-weight: 600;
+                    color: #3a3a3a;
+                    padding-bottom: 10px;
+                }
+                .sub-title {
+                    font-size: 1.2rem;
+                    color: #555;
+                    margin-top: -10px;
+                    padding-bottom: 20px;
+                }
+            </style>
+            <div class='main-title'>📊 BSG Customer Journey Dashboard</div>
+            <div class='sub-title'>Tracking engagement & satisfaction across key stages</div>
+        """, unsafe_allow_html=True)
 
-with colB:
-    st.subheader("🔻 Journey Funnel")
-    funnel_data = df.drop_duplicates(subset=['customer_id', 'stage'])
-    funnel_counts = funnel_data['stage'].value_counts().reindex(['Signup', 'Onboarding', 'Usage'])
-    fig3 = px.funnel(funnel_counts.reset_index(), x='stage', y='count',
-                     title="Customer Journey Funnel",
-                     color_discrete_sequence=color_sequence)
-    st.plotly_chart(fig3, use_container_width=True)
+        # Optional animation in main page header
+        dashboard_animation = load_lottie_url("https://assets4.lottiefiles.com/private_files/lf30_l8csvcry.json")
+        if dashboard_animation:
+            st_lottie(dashboard_animation, height=150)
 
-# --- Download Button ---
-st.markdown("## ⬇️ Export")
-csv = df.to_csv(index=False).encode('utf-8')
-st.download_button("📥 Download Filtered Data", csv, "filtered_data.csv", "text/csv")
+        # KPIs
+        st.markdown("### 📌 Key Metrics")
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Total Customers", df_filtered['customer_id'].nunique())
+        col2.metric("Avg Satisfaction", round(df_filtered['satisfaction_score'].mean(), 2))
+        col3.metric("Low Scores (<5)", df_filtered[df_filtered['satisfaction_score'] < 5].shape[0])
+        st.markdown("---")
 
-# --- Footer Use Cases ---
-st.markdown("---")
-st.markdown("### 🧑‍💼 Use Case Examples")
-st.markdown("""
-- 📱 Telecom company tracking app onboarding.
-- 💳 Bank analyzing digital account setup.
-- 🛍️ E-commerce platform improving user retention.
-""")
+        # Satisfaction Over Time
+        st.markdown("### 📈 Satisfaction Over Time")
+        fig1 = px.line(df_filtered.groupby("timestamp")["satisfaction_score"].mean().reset_index(),
+                    x="timestamp", y="satisfaction_score")
+        st.plotly_chart(fig1, use_container_width=True)
+
+        # Stage Counts
+        st.markdown("### 🧭 Customer Stage Distribution")
+        fig2 = px.histogram(df_filtered, x="stage", color="segment", barmode="group")
+        st.plotly_chart(fig2, use_container_width=True)
+        st.markdown("---")
+
+        # Drilldown
+        st.sidebar.header("📌 Customer Drilldown")
+        selected_customer = st.sidebar.selectbox("Select Customer ID", df_filtered['customer_id'].unique())
+        if selected_customer:
+            cust_data = df_filtered[df_filtered['customer_id'] == selected_customer].sort_values(by='timestamp')
+            st.markdown(f"### 🧑 Journey Details: Customer {selected_customer}")
+            st.table(cust_data[['stage', 'timestamp', 'satisfaction_score', 'segment', 'region']])
+            fig3 = px.line(cust_data, x='timestamp', y='satisfaction_score', markers=True)
+            st.plotly_chart(fig3, use_container_width=True)
+
+        st.markdown("### 🚨 Satisfaction Alerts")
+        low_scores = df_filtered[df_filtered['satisfaction_score'] < 5]
+        if not low_scores.empty:
+            st.warning(f"⚠️ {len(low_scores['customer_id'].unique())} customer(s) have scores below 5.")
+            if st.checkbox("Show low score details"):
+                st.dataframe(low_scores[['customer_id', 'stage', 'timestamp', 'satisfaction_score', 'segment', 'region']])
+        else:
+            st.success("✅ No customers with low satisfaction scores!")
+
+        st.markdown("---")
+        st.caption(f"🕒 Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+if __name__ == "__main__":
+    main()
