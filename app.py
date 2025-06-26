@@ -53,7 +53,7 @@ def login():
                     margin-bottom: 20px;
                 }
             </style>
-            <div class='login-title'>🔐 Welcome to Keanu's Dashboard</div>
+            <div class='login-title'> Welcome to Keanu's Dashboard</div>
             <div class='login-subtitle'>Please log in to access customer insights</div>
         """, unsafe_allow_html=True)
 
@@ -68,7 +68,7 @@ def login():
         if st.button("Login"):
             if username == correct_username and password == correct_password:
                 st.session_state.logged_in = True
-                st.success("Login successful 🎉")
+                st.success("Login successful ")
             else:
                 st.error("Incorrect username or password")
         return False
@@ -79,7 +79,7 @@ def login():
 def main():
     st.set_page_config(
         page_title="BSG Customer Journey Dashboard",
-        page_icon="📊",
+        page_icon="",
         layout="wide",
         initial_sidebar_state="expanded"
     )
@@ -91,7 +91,7 @@ def main():
         segments = df['segment'].unique()
         regions = df['region'].unique()
 
-        st.sidebar.title("🔍 Filters")
+        st.sidebar.title(" Filters")
         selected_segment = st.sidebar.selectbox("Select Segment", ["All"] + list(segments))
         selected_region = st.sidebar.selectbox("Select Region", ["All"] + list(regions))
 
@@ -116,7 +116,7 @@ def main():
                     padding-bottom: 20px;
                 }
             </style>
-            <div class='main-title'>📊 BSG Customer Journey Dashboard</div>
+            <div class='main-title'> BSG Customer Journey Dashboard</div>
             <div class='sub-title'>Tracking engagement & satisfaction across key stages</div>
         """, unsafe_allow_html=True)
 
@@ -126,7 +126,7 @@ def main():
             st_lottie(dashboard_animation, height=150)
 
         # KPIs
-        st.markdown("### 📌 Key Metrics")
+        st.markdown("###  Key Metrics")
         col1, col2, col3 = st.columns(3)
         col1.metric("Total Customers", df_filtered['customer_id'].nunique())
         col2.metric("Avg Satisfaction", round(df_filtered['satisfaction_score'].mean(), 2))
@@ -134,38 +134,38 @@ def main():
         st.markdown("---")
 
         # Satisfaction Over Time
-        st.markdown("### 📈 Satisfaction Over Time")
+        st.markdown("###  Satisfaction Over Time")
         fig1 = px.line(df_filtered.groupby("timestamp")["satisfaction_score"].mean().reset_index(),
                     x="timestamp", y="satisfaction_score")
         st.plotly_chart(fig1, use_container_width=True)
 
         # Stage Counts
-        st.markdown("### 🧭 Customer Stage Distribution")
+        st.markdown("###  Customer Stage Distribution")
         fig2 = px.histogram(df_filtered, x="stage", color="segment", barmode="group")
         st.plotly_chart(fig2, use_container_width=True)
         st.markdown("---")
 
         # Drilldown
-        st.sidebar.header("📌 Customer Drilldown")
+        st.sidebar.header(" Customer Drilldown")
         selected_customer = st.sidebar.selectbox("Select Customer ID", df_filtered['customer_id'].unique())
         if selected_customer:
             cust_data = df_filtered[df_filtered['customer_id'] == selected_customer].sort_values(by='timestamp')
-            st.markdown(f"### 🧑 Journey Details: Customer {selected_customer}")
+            st.markdown(f"###  Journey Details: Customer {selected_customer}")
             st.table(cust_data[['stage', 'timestamp', 'satisfaction_score', 'segment', 'region']])
             fig3 = px.line(cust_data, x='timestamp', y='satisfaction_score', markers=True)
             st.plotly_chart(fig3, use_container_width=True)
 
-        st.markdown("### 🚨 Satisfaction Alerts")
+        st.markdown("###  Satisfaction Alerts")
         low_scores = df_filtered[df_filtered['satisfaction_score'] < 5]
         if not low_scores.empty:
-            st.warning(f"⚠️ {len(low_scores['customer_id'].unique())} customer(s) have scores below 5.")
+            st.warning(f"⚠ {len(low_scores['customer_id'].unique())} customer(s) have scores below 5.")
             if st.checkbox("Show low score details"):
                 st.dataframe(low_scores[['customer_id', 'stage', 'timestamp', 'satisfaction_score', 'segment', 'region']])
         else:
-            st.success("✅ No customers with low satisfaction scores!")
+            st.success(" No customers with low satisfaction scores!")
 
         st.markdown("---")
-        st.caption(f"🕒 Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        st.caption(f" Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 if __name__ == "__main__":
     main()
